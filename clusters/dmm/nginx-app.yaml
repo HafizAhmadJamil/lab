@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-jed
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/HafizAhmadJamil/lab.git
+    path: apps/nginx
+    targetRevision: HEAD
+  destination:
+    server: https://203.0.113.6:6443
+    namespace: nginx
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
